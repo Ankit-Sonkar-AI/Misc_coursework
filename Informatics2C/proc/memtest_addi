@@ -1,0 +1,14 @@
+Memory test file for addi
+
+EXPECT AT END:
+  PC = 0x0c
+  R1 = 0xffffbc8e
+
+
+00: addi $2, $0, 0xbc7a
+%2002bc7a
+04: addi $1, $2, 0x14
+%20410014
+08: halt
+%0000000c
+

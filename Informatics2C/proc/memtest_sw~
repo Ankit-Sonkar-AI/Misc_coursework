@@ -1,0 +1,23 @@
+Memory test file for all instructions.
+Shown as hex address and instruction at that address.
+Lines starting with a percent are words loaded into
+memory consecutively starting at address 0, and are in hex.
+
+EXPECT AT END:
+  PC = 0x08
+  R1 = 0x00000048
+  R2 = 0x00000006
+  R3 = 0x00000050
+  R4 = 0x00000058
+  R5 = 0x00000002
+  R6 = 0x00000007
+  R7 = 0x00000003
+  R8 = 0x00000006
+
+
+1c: sw $8, 0xc($2)      # Mem[0x5c] = $8 = 6
+    6'2b : 5'2 : 5'8 : 16'c
+    1010 11:00 010:0 1000: 0000 0000 0000 1100
+
+%ac48000c
+

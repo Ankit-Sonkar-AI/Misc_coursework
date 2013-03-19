@@ -1,0 +1,15 @@
+Memory test file for jump and halt instructions.
+Shown as hex address and instruction at that address.
+Lines starting with a percent are words loaded into
+memory consecutively starting at address 0, and are in hex.
+
+EXPECT AT END:
+  PC = 0x8
+
+00: add 15 10
+
+%01ea0820
+
+%0000000c
+
+

@@ -1,0 +1,14 @@
+
+-- Example of a program in Micro-Haskell
+
+fib :: Integer -> Integer ;
+fib n = if n==0 then 0 else if n==1 then 1 else fib (n-1) + fib (n-2) ;
+
+div :: Integer -> Integer -> Integer ;
+div m n = if m<n then 0 else 1 + div (m-n) n ;
+
+withinRadius :: Integer -> Integer -> Integer -> Bool ;
+withinRadius x y r = x * x + y * y < r * r ;
+
+twice :: (Integer -> Integer) -> Integer -> Integer ;
+twice f n = f (f n) ;

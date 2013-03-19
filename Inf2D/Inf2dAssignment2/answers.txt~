@@ -1,0 +1,83 @@
+-----------------------------------------------------------------------
+ ------ Informatics 2D - 2011/12 - Second Assignment - Planning ------
+-----------------------------------------------------------------------
+ 
+ Write here you matriculation number (only - your name is not needed)
+ Matriculation Number: s1024819
+ 
+1.1)
+Adjacent(loc1-1, loc1-2), Adjacent(loc1-1, loc2-1), Adjacent(loc2-1, loc2-2),
+Adjacent(loc2-1, loc1-1), Adjacent(loc2-1, loc3-1), Adjacent(loc3-1, loc2-1),
+Adjacent(loc3-1,loc3-2)), Adjacent(loc1-2, loc1-1), Adjacent(loc1-2, loc1-3),
+Adjacent(loc1-2, loc2-2), Adjacent(loc2-2, loc1-2), Adjacent(loc2-2, loc2-1),
+Adjacent(loc2-2, loc3-2), Adjacent(loc2-2, loc2-3), Adjacent(loc3-2, loc3-1),
+Adjacent(loc3-2, loc2-2), Adjacent(loc3-2, loc3-3), Adjacent(loc1-3, loc1-2),
+Adjacent(loc1-3, loc2-3), Adjacent(loc1-3, loc1-4), Adjacent(loc2-3, loc1-3),
+Adjacent(loc2-3, loc2-2), Adjacent(loc2-3, loc3-3), Adjacent(loc2-3, loc2-4),
+Adjacent(loc3-3, loc2-3), Adjacent(loc3-3, loc3-2), Adjacent(loc1-4, loc1-3),
+Adjacent(loc1-4, loc2-4), Adjacent(loc2-4, loc1-4), Adjacent(loc2-4, loc2-3)
+
+Adjacent(x,y) basically means that square x is next to square y and the agent can move from x to y.
+
+Moveable(loc1-1, loc1-2, loc1-3), Moveable(loc1-2, loc1-3, loc1-4),
+Moveable(loc2-1, loc2-2, loc2-3), Moveable(loc2-2, loc2-3, loc2-4),
+Moveable(loc3-1, loc3-2, loc3-3), Moveable(loc1-3, loc2-3, loc3-3),
+Moveable(loc1-1, loc2-1, loc3-1), Moveable(loc1-2, loc2-2, loc3-2),
+Moveable(loc1-3, loc1-2, loc1-1), Moveable(loc1-4, loc1-3, loc1-2),
+Moveable(loc2-3, loc2-2, loc2-1), Moveable(loc2-3, loc2-3, loc2-2),
+Moveable(loc3-3, loc3-2, loc3-1), Moveable(loc3-3, loc2-3, loc1-3),
+Moveable(loc3-1, loc2-1, loc1-1), Moveable(loc3-2, loc2-2, loc1-2)
+
+Moveable(x,y,z) defines that if basically the agent is at position x then it
+can move a block at position y to position z and change the agent's position
+to y
+
+1.2)
+
+empty(x, S) - that means that the square x is empty at the situation s, where x is a valid location on the board
+at(A, x, S) - A is at location x and the current situation is X
+
+1.3)
+S0 = (empty(loc1-1, S0), at(C, loc2-1, S0), empty(loc3-1, S0) ,empty(loc1-2, S0), at(B,loc2-2, S0),at(Agent, loc3-2, S0), empty(loc1-3, S0), at(A, loc2-3, S0), empty(loc3-3, S0), empty(loc1-4, S0), empty(loc2-4, S0)) 
+
+1.4)
+
+Goal(at(A, loc2-1, S), at(B, loc3-1, S), at(C, loc1-1, S))
+
+
+1.5)
+
+at(Agent, x, S) and Adjacent(x,y) and empty(y) => Poss(MOVE(x,y), S)
+
+-- If the agent is at location x and the locations x and y are adjacent and y is not empty, then the agent can move from x to y. The action is defined as MOVE(x,y)
+Poss(MOVE(x,y), S) => at(Agent, y, Result(MOVE(x,y),S))
+
+1.6)
+
+at(Agent, x, S) and at(A,y,S) and Moveable(x,y,z) and empty(z) => Poss(Push(Agent,A,z), S)
+
+Poss(PUSH(A,z), S) => at(Agent, y, Result(PUSH(Agent,A,z), S)) and at(A,z,S) and empty(x)
+
+1.7)
+
+That well-known problem which in situation calculus can be solved is the frame
+problem. In situation caclulus it is solved by successor-state axioms, while
+in PDDL there is an assumption that every literal, that is not mentioned stays
+the same.
+
+1.8)
+
+Poss(a, s) =>
+(at(Agent, y, Result(a,s)) <=> a = MOVE(x,y) or (at(Agent, y, s) and (not a = MOVE(Agent,x,z)))
+
+Poss(a, s) =>
+
+(at(Agent, y, Result(a,s)) and at(A,z,s)) <=> a = PUSH(Agent,A,z) or ((at(Agent, y, s) and at(A,z,s)) and (not a = PUSH(Agent,A,x)))
+
+
+
+1.9)
+
+
+--------------------
+Answers to parts 2 and 3 should be included in the appropriate domain-*.pl and instance-*.pl files.
